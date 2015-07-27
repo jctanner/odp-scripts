@@ -37,8 +37,8 @@ set_hadoop_vars() {
     # ITEST wants the MR dir with the examples jar ...
     # java.lang.AssertionError: Can't find hadoop-examples.jar file
 
-    # HDP sometimes has client dirs
     if ( [ -z "$HADOOP_MAPRED_HOME" ] || [ -z "$HADOOP_CONF_DIR" ] ); then
+        # HDP sometimes has client dirs
         if [ -d /usr/hdp/current ]; then
             echo "# DEBUG: HDP DETECTED"
             if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
@@ -48,6 +48,7 @@ set_hadoop_vars() {
                 export HADOOP_MAPRED_HOME=/usr/hdp/current/hadoop-mapreduce-client
             fi
 
+        # CDH may or may not have been deployed with parcels ...
         elif [ -d /opt/cloudera/parcels/CDH/jars ]; then
             echo "# DEBUG: CDH DETECTED"
             if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
