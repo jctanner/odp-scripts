@@ -125,7 +125,7 @@ print_tests() {
 
             cd $TESTDIR
 
-            for FILE in $(find reports/tests/classes -type f -name "*.html"); do
+            for FILE in $(find -L reports/tests/classes -type f -name "*.html"); do
                 echo "## $TESTDIR/$FILE"
                 if [ $(which links) ]; then
                     links $FILE -dump
@@ -161,15 +161,10 @@ set_java_home
 # SET HADOOP SERVICE HOMES
 set_hadoop_vars
 
-# Link the example odp test into the tests dir
-ln -s 
-
-
-
 echo "######################################################"
 echo "#                 STARTING ITEST                     #"
 echo "######################################################"
-echo "# Use --debug/--info/--stacktrace for addtional detail"
+echo "# Use --debug/--info/--stacktrace for more details"
 
 # EXECUTE TESTS
 #export TESTS="mapreduce"
