@@ -47,7 +47,21 @@ set_hadoop_vars() {
             if ( [ -z "$HADOOP_MAPRED_HOME" ] && [ -d /usr/hdp/current/hadoop-mapreduce-client ] ); then
                 export HADOOP_MAPRED_HOME=/usr/hdp/current/hadoop-mapreduce-client
             fi
+
+        elif [ -d /opt/cloudera/parcels/CDH/jars ]; then
+            echo "# DEBUG: CDH DETECTED"
+            if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
+                export HADOOP_CONF_DIR=/etc/hadoop/conf
+            fi
+
+            if ( [ -z "$HADOOP_MAPRED_HOME" ] ); then
+                # This is the only dir that contains the examples jars on cdh5.2.x
+                export HADOOP_MAPRED_HOME=/opt/cloudera/parcels/CDH/jars
+            fi
+          
         fi
+
+
     fi
 
     if ( [ -z "$HADOOP_MAPRED_HOME" ] || [ -z "$HADOOP_CONF_DIR" ] ); then
@@ -64,23 +78,28 @@ set_hadoop_vars() {
             # os.path.abspath
             CP=$(readlink -e $CP)
 
-            # HADOOP_CONF_DIR
-            if ( [[ "$CP" == */conf* ]] && [[ "$CP" == */hadoop/* ]] ); then
-                
-                if ( [ -d $CP ] && [ -f $CP/core-site.xml ] ); then
-                    export HADOOP_CONF_DIR=$CP
-                    continue
+            if [ -z "$HADOOP_CONF_DIR" ]; then
+                # HADOOP_CONF_DIR
+                if ( [[ "$CP" == */conf* ]] && [[ "$CP" == */hadoop/* ]] ); then
+                    
+                    if ( [ -d $CP ] && [ -f $CP/core-site.xml ] ); then
+                        export HADOOP_CONF_DIR=$CP
+                        continue
+                    fi
                 fi
             fi
 
-            # HADOOP_MAPRED_HOME (use the path with the most jars)
-            JARCOUNT=$(ls $CP/hadoop-mapreduce*.jar 2>/dev/null | wc -l)
-            if [ $JARCOUNT -gt 0 ]; then
-                if ( [ $JARCOUNT -gt $MAXMR ] ); then
-                    export HADOOP_MAPRED_HOME=$CP                
-                    MAXMR=$JARCOUNT
+            if [ -z "$HADDOOP_MAPRED_HOME" ]; then
+                # HADOOP_MAPRED_HOME (use the path with the most jars)
+                JARCOUNT=$(ls $CP/hadoop-mapreduce*.jar 2>/dev/null | wc -l)
+                if [ $JARCOUNT -gt 0 ]; then
+                    if ( [ $JARCOUNT -gt $MAXMR ] ); then
+                        export HADOOP_MAPRED_HOME=$CP                
+                        MAXMR=$JARCOUNT
+                    fi
                 fi
             fi
+
         done
 
     fi
@@ -91,9 +110,40 @@ set_hadoop_vars() {
 }
 
 
+print_tests() {
+
+    echo "######################################################"
+    echo "#                     RESULTS                        #"
+    echo "######################################################"
+
+    for TEST in $(echo $TESTS | tr ',' '\n'); do
+
+        TESTDIR=$BIGTOP_HOME/bigtop-tests/smoke-tests/$TEST/build
+
+        if [ -d $TESTDIR ]; then
+
+            cd $TESTDIR
+
+            for FILE in $(find reports/tests/classes -type f -name "*.html"); do
+                echo "## $TESTDIR/$FILE"
+                if [ $(which links) ]; then
+                    links $FILE -dump
+                else
+                    echo "PLEASE INSTALL LINKS: sudo yum -y install links"
+                fi
+            done
+
+        fi
+        
+    done
+
+}
+
+
+
 export ITEST="0.7.0"
 
-# SET BIGTOP_HOME AND JAVA_HOME
+# SET BIGTOP_HOME AND GET THE CODE
 export BIGTOP_HOME=/tmp/bigtop_home
 echo "# DEBUG: BIGTOP_HOME=$BIGTOP_HOME"
 if [ ! -d $BIGTOP_HOME ]; then
@@ -120,4 +170,5 @@ export TESTS="mapreduce"
 cd $BIGTOP_HOME/bigtop-tests/smoke-tests/
 ./gradlew clean test -Dsmoke.tests=$TESTS $@
 
-# COPY RESULTS
+# SHOW RESULTS (HTML)
+print_tests 
