@@ -32,7 +32,7 @@ dependencies {
 
 
 def tests_to_include() {
-  return ["TestODPsmoke.groovy"];
+  return ["TestODPexample.groovy"];
 }
 
 sourceSets {

@@ -117,7 +117,7 @@ print_tests() {
     echo "#                     RESULTS                        #"
     echo "######################################################"
 
-    for TEST in $(echo $TESTS | tr ',' '\n'); do
+    for TEST in $(echo $ITESTS | tr ',' '\n'); do
 
         TESTDIR=$BIGTOP_HOME/bigtop-tests/smoke-tests/$TEST/build
 
@@ -161,6 +161,10 @@ set_java_home
 # SET HADOOP SERVICE HOMES
 set_hadoop_vars
 
+# Link the example odp test into the tests dir
+ln -s 
+
+
 
 echo "######################################################"
 echo "#                 STARTING ITEST                     #"
@@ -170,9 +174,17 @@ echo "# Use --debug/--info/--stacktrace for addtional detail"
 # EXECUTE TESTS
 #export TESTS="mapreduce"
 #export TESTS="odp"
-export TESTS="odp,mapreduce"
+if [ -z "$ITESTS" ]; then
+    export ITESTS="odp-example,mapreduce"
+fi
+
+# Link the example odp test into the tests dir
+if [ ! -L $BIGTOP_HOME/bigtop-tests/smoke-tests/odp-example ]; then
+    ln -s $PWD/odp_itest_example $BIGTOP_HOME/bigtop-tests/smoke-tests/odp-example
+fi
+
 cd $BIGTOP_HOME/bigtop-tests/smoke-tests/
-./gradlew clean test -Dsmoke.tests=$TESTS $@
+./gradlew clean test -Dsmoke.tests=$ITESTS $@
 
 # SHOW RESULTS (HTML)
 print_tests 
