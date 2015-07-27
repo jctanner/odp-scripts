@@ -143,6 +143,7 @@ print_tests() {
 
 
 export ITEST="0.7.0"
+export ODP_HOME="/tmp/odp"
 
 # SET BIGTOP_HOME AND GET THE CODE
 export BIGTOP_HOME=/tmp/bigtop_home
@@ -167,7 +168,9 @@ echo "######################################################"
 echo "# Use --debug/--info/--stacktrace for addtional detail"
 
 # EXECUTE TESTS
-export TESTS="mapreduce"
+#export TESTS="mapreduce"
+#export TESTS="odp"
+export TESTS="odp,mapreduce"
 cd $BIGTOP_HOME/bigtop-tests/smoke-tests/
 ./gradlew clean test -Dsmoke.tests=$TESTS $@
 
