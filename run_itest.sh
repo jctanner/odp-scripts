@@ -6,6 +6,14 @@
 # apache bigtop project. It consists of typical java tools/libraries
 # such as junit, gradle and maven.
 
+# This script is a helper to run itest on any hadoop system without
+# requiring intimate knowledge of bigtop. If running for the first
+# time, simply execute ./run_itest.sh without any arguments. If you 
+# want more information, use these additional parameters:
+#
+#   --info          - turns on the log4j output
+#   --debug         - turns up the log4j output to maximum
+#   --traceback     - shows tracebacks from tests
 
 set_java_home() {
 
