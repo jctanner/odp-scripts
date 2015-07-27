@@ -166,9 +166,7 @@ echo "#                 STARTING ITEST                     #"
 echo "######################################################"
 echo "# Use --debug/--info/--stacktrace for more details"
 
-# EXECUTE TESTS
-#export TESTS="mapreduce"
-#export TESTS="odp"
+# SET THE DEFAULT TESTS
 if [ -z "$ITESTS" ]; then
     export ITESTS="odp-example,mapreduce"
 fi
@@ -178,6 +176,7 @@ if [ ! -L $BIGTOP_HOME/bigtop-tests/smoke-tests/odp-example ]; then
     ln -s $PWD/odp_itest_example $BIGTOP_HOME/bigtop-tests/smoke-tests/odp-example
 fi
 
+# CALL THE GRADLE WRAPPER TO RUN THE FRAMEWORK
 cd $BIGTOP_HOME/bigtop-tests/smoke-tests/
 ./gradlew clean test -Dsmoke.tests=$ITESTS $@
 
