@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# https://github.com/apache/bigtop/tree/master/bigtop-test-framework
+
+# "ITEST" is an integration testing framework written for and by the
+# apache bigtop project. It consists of typical java tools/libraries
+# such as junit, gradle and maven.
+
 
 set_java_home() {
 
@@ -132,6 +138,7 @@ print_tests() {
                 else
                     echo "PLEASE INSTALL LINKS: sudo yum -y install links"
                 fi
+                echo ""
             done
 
         fi
