@@ -54,7 +54,7 @@ set_hadoop_vars() {
     if ( [ -z "$HADOOP_MAPRED_HOME" ] || [ -z "$HADOOP_CONF_DIR" ] ); then
         # ODP follows an HDP convention ...
         if [ -d /usr/odp/current ]; then
-            echo "# DEBUG: HDP DETECTED"
+            echo "# DEBUG: ODP DETECTED"
             if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
                 export HADOOP_CONF_DIR=/etc/hadoop/conf
             fi
