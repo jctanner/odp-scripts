@@ -52,8 +52,18 @@ set_hadoop_vars() {
     # java.lang.AssertionError: Can't find hadoop-examples.jar file
 
     if ( [ -z "$HADOOP_MAPRED_HOME" ] || [ -z "$HADOOP_CONF_DIR" ] ); then
+        # ODP follows an HDP convention ...
+        if [ -d /usr/odp/current ]; then
+            echo "# DEBUG: HDP DETECTED"
+            if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
+                export HADOOP_CONF_DIR=/etc/hadoop/conf
+            fi
+            if ( [ -z "$HADOOP_MAPRED_HOME" ] && [ -d /usr/odp/current/hadoop-mapreduce-client ] ); then
+                export HADOOP_MAPRED_HOME=/usr/odp/current/hadoop-mapreduce-client
+            fi
+
         # HDP sometimes has client dirs
-        if [ -d /usr/hdp/current ]; then
+        elif [ -d /usr/hdp/current ]; then
             echo "# DEBUG: HDP DETECTED"
             if ( [ -z "$HADOOP_CONF_DIR" ] && [ -d /etc/hadoop/conf ] ); then
                 export HADOOP_CONF_DIR=/etc/hadoop/conf
