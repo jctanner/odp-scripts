@@ -15,6 +15,27 @@
 #   --debug         - turns up the log4j output to maximum
 #   --traceback     - shows tracebacks from tests
 
+set_hdfs_home() {
+
+    HDFS_HOMEDIR="/user/$(whoami)"
+
+    # Validate it exists ...    
+    hadoop fs -test -d $HDFS_HOMEDIR
+    RC=$?
+    if [ $RC != 0 ];then
+        echo "Creating hdfs:/$HDFS_HOMEDIR"
+        su -l hdfs -c "hadoop fs -mkdir $HDFS_HOMEDIR"
+    fi
+
+    # Validate the owner is you ...
+    OWNER=$(hadoop fs -stat "%u" /user/root)
+    if [[ "$OWNER" != "$(whoami)" ]]; then
+        echo "Chowning hdfs:/$HDFS_HOMEDIR"
+        su -l hdfs -c "hadoop fs -chown -R $(whoami) $HDFS_HOMEDIR"
+    fi
+
+}
+
 set_java_home() {
 
     #####################################################################
@@ -169,6 +190,9 @@ print_tests() {
 
 export ITEST="0.7.0"
 export ODP_HOME="/tmp/odp"
+
+# Check the hdfs homedir
+set_hdfs_home
 
 # SET BIGTOP_HOME AND GET THE CODE
 export BIGTOP_HOME=/tmp/bigtop_home
