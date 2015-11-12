@@ -175,7 +175,7 @@ export BIGTOP_HOME=/tmp/bigtop_home
 echo "# DEBUG: BIGTOP_HOME=$BIGTOP_HOME"
 if [ ! -d $BIGTOP_HOME ]; then
     echo "# DEBUG: cloning $BIGTOP_HOME from github"
-    git clone --depth 1 https://github.com/apache/bigtop $BIGTOP_HOME
+    git clone --depth 1 https://github.com/apache/bigtop -b branch-1.0 $BIGTOP_HOME
 else
     echo "# DEBUG: $BIGTOP_HOME already cloned"
 fi
@@ -193,7 +193,8 @@ echo "# Use --debug/--info/--stacktrace for more details"
 
 # SET THE DEFAULT TESTS
 if [ -z "$ITESTS" ]; then
-    export ITESTS="odp-example,mapreduce"
+    #export ITESTS="odp-example,mapreduce"
+    export ITESTS="mapreduce"
 fi
 
 # Link the example odp test into the tests dir
