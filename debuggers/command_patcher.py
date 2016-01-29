@@ -122,11 +122,13 @@ def parse_bashx(rawtext):
                 import pdb; pdb.set_trace()
 
             if len(varname.split()) > 1:
-                import pdb; pdb.set_trace()
+                #import pdb; pdb.set_trace()
+                continue
 
             #print "evar:",varname
             if varname not in evars:
                 evars[varname] = []
+
             value = line.replace(varname + '=', '', 1)
             print "value:",value
             evars[varname].append(value)
@@ -193,18 +195,32 @@ def store_results(vars, execs, filename='/tmp/patcher_results.yml'):
         import pdb; pdb.set_trace()
 
 
-def trace_command(cmd, args):
+def trace_command(cmd, args, vars=None, vars_order=None):
 
     final_vars = {}
+    final_vars_order = []
     final_indexes = []
 
-    # run the command once to get all the debug output
-    indexes = get_exec_lines_in_file(cmd)
-    tracecmd = "bash -x %s %s" % (cmd, args)
-    (rc, so, se) = run_command_live(tracecmd)
-    rawtext = str(so) + str(se)
-    (evars, evars_order) = parse_bashx(rawtext)
-
+    # If vars are given, this is not a top level script
+    # so skip calling it directly and go straight to
+    # mocking out the exec call. This will typically happen
+    # during recursion on commands such as hive.
+    if not vars:
+        # run the command once to get all the debug output
+        indexes = get_exec_lines_in_file(cmd)
+        tracecmd = "bash -x %s %s" % (cmd, args)
+        (rc, so, se) = run_command_live(tracecmd)
+        rawtext = str(so) + str(se)
+        (evars, evars_order) = parse_bashx(rawtext)
+        final_vars_order = evars_order
+    else:
+        # Recursion ...
+        evars = vars
+        evars_order = vars_order
+        index = (None, None, cmd, args)
+        indexes = [index]
+        #import pdb; pdb.set_trace()
+        
     # Rebuild the underlying command and re-run it
     fn = create_debug_script(evars, evars_order, indexes)
     newcmd = "bash -x %s %s" % (fn, args)
@@ -212,6 +228,7 @@ def trace_command(cmd, args):
     rawtext2 = str(so2) + str(se2)
     indexes2 = get_exec_lines_in_string(rawtext2)
     (evars2, evars_order2) = parse_bashx(rawtext2)
+    final_vars_order += evars_order2
 
     if len(indexes2) > 1:
         print "found more than one exec"
@@ -226,19 +243,36 @@ def trace_command(cmd, args):
         else:
             final_vars[k] += v
     
+    
     # combine all the execs
     final_indexes = indexes + indexes2
 
     # Is further recursion needed?
-    for index in indexes2:
-        print index
-        script = is_script(index[1])
+    if indexes2:
+        script = is_script(indexes2[-1][2])
         if script:
             print "RECURSION REQUIRED!"
-            import pdb; pdb.set_trace()
+            # to recurse, we need to send all the known vars
+            (evars3, indexes3) = trace_command(indexes2[-1][2], 
+                                               indexes2[-1][3], 
+                                               vars=final_vars,
+                                               vars_order=final_vars_order)
+            print "indexes3:",indexes3
+            final_indexes += indexes3
+            for k,v in evars3.iteritems():
+                if k not in final_vars:
+                    final_vars[k] = v
+                else:
+                    final_vars[k] += v
+         
+       
+    if is_script(final_indexes[-1][3]):
+        print final_indexes
+        import pdb; pdb.set_trace()
 
     #import pdb; pdb.set_trace()
     return (final_vars, final_indexes)
+
 
 def main():
 
@@ -253,6 +287,10 @@ def main():
     yarn = which('yarn')
     (vars, execs) = trace_command(yarn, 'application -list')
     store_results(vars, execs, filename='/tmp/patcher_results-yarn.yml')
+
+    hive = which('hive')
+    (vars, execs) = trace_command(hive, '-e "show tables"')
+    store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
     
     #import pdb; pdb.set_trace()
 
