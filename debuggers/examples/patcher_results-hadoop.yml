@@ -1,0 +1,101 @@
+execs:
+- !!python/tuple [/usr/bin/hadoop, 7, /usr/lib/hadoop/bin/hadoop, '"$@"']
+- !!python/tuple [null, 144, /usr/java/jdk1.7.0_67-cloudera/bin/java, '-Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop/logs
+    -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str=
+    -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+    -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhadoop.security.logger=INFO,NullAppender
+    org.apache.hadoop.fs.FsShell -ls /']
+vars:
+  BIGTOP_DEFAULTS_DIR: [/etc/default, /etc/default]
+  CLASS: [org.apache.hadoop.fs.FsShell]
+  CLASSPATH: [/etc/hadoop/conf, '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*''', '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/.//*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/.//*:/usr/lib/hadoop-mapreduce/lib/*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/.//*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/.//*''',
+    '''/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/.//*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/.//*''']
+  COMMAND: [fs]
+  DEFAULT_CONF_DIR: [etc/hadoop]
+  DEFAULT_LIBEXEC_DIR: [/usr/lib/hadoop/bin/../libexec]
+  HADOOP_COMMON_DIR: [./]
+  HADOOP_COMMON_HOME: [/usr/lib/hadoop]
+  HADOOP_COMMON_LIB_JARS_DIR: [lib]
+  HADOOP_COMMON_LIB_NATIVE_DIR: [lib/native]
+  HADOOP_CONF_DIR: [/etc/hadoop/conf]
+  HADOOP_DEFAULT_PREFIX: [/usr/lib/hadoop]
+  HADOOP_HDFS_HOME: [/usr/lib/hadoop-hdfs]
+  HADOOP_LIBEXEC_DIR: [///usr/lib/hadoop/libexec, ///usr/lib/hadoop/libexec]
+  HADOOP_LOGFILE: [hadoop.log]
+  HADOOP_LOG_DIR: [/usr/lib/hadoop/logs]
+  HADOOP_MAPRED_HOME: [/usr/lib/hadoop-mapreduce]
+  HADOOP_OPTS: [''' -Dhadoop.log.dir=/usr/lib/hadoop/logs''', ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs
+      -Dhadoop.log.file=hadoop.log''', ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log
+      -Dhadoop.home.dir=/usr/lib/hadoop''', ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs
+      -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str=''',
+    ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
+      -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console''', ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs
+      -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str=
+      -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native''',
+    ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
+      -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+      -Dhadoop.policy.file=hadoop-policy.xml''', ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs
+      -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str=
+      -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+      -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true''', '''
+      -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
+      -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+      -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true ''',
+    ''' -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
+      -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+      -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true  -Dhadoop.security.logger=INFO,NullAppender''']
+  HADOOP_POLICYFILE: [hadoop-policy.xml]
+  HADOOP_PREFIX: [/usr/lib/hadoop]
+  HADOOP_YARN_HOME: [/usr/lib/hadoop-yarn]
+  HDFS_DIR: [./]
+  HDFS_LIB_JARS_DIR: [lib]
+  IFS: ['']
+  JAVA: [/usr/java/jdk1.7.0_67-cloudera/bin/java]
+  JAVA6_HOME_CANDIDATES: [('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6')]
+  JAVA7_HOME_CANDIDATES: [('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle')]
+  JAVA8_HOME_CANDIDATES: [('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle')]
+  JAVA_HEAP_MAX: [-Xmx1000m]
+  JAVA_HOME_CANDIDATES: ['(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})']
+  JAVA_LIBRARY_PATH: [/usr/lib/hadoop/lib/native]
+  LD_LIBRARY_PATH: [':/usr/lib/hadoop/lib/native']
+  MALLOC_ARENA_MAX: ['4']
+  MAPRED_DIR: [./]
+  MAPRED_LIB_JARS_DIR: [lib]
+  MISCJAVA_HOME_CANDIDATES: [('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk')]
+  OPENJAVA6_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk')]
+  OPENJAVA7_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk')]
+  OPENJAVA8_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk')]
+  TOOL_PATH: ['''/usr/lib/hadoop/share/hadoop/tools/lib/*''']
+  YARN_DIR: [./]
+  YARN_LIB_JARS_DIR: [lib]
+  bin: [/usr/lib/hadoop/bin/hadoop, /usr/lib/hadoop/bin, /usr/lib/hadoop/bin]
+  bindv6only: ['']
+  common_bin: [/usr/lib/hadoop/libexec]
+  script: [hadoop-config.sh]
+  this: [///usr/lib/hadoop/libexec/hadoop-config.sh, /usr/lib/hadoop/libexec/hadoop-config.sh]
