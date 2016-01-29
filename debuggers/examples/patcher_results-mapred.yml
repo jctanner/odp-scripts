@@ -1,9 +1,10 @@
 execs:
 - !!python/tuple [/usr/bin/mapred, 7, /usr/lib/hadoop-mapreduce/bin/mapred, '"$@"']
-- !!python/tuple [null, 486, /usr/java/jdk1.7.0_67-cloudera/bin/java, '-Dproc_job
-    -Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
-    -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
-    -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/usr/lib/hadoop-mapreduce/logs
+- !!python/tuple [/usr/lib/hadoop-mapreduce/bin/mapred, 486, /usr/java/jdk1.7.0_67-cloudera/bin/java,
+  '-Dproc_job -Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log
+    -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console
+    -Djava.library.path=/usr/lib/hadoop/lib/native -Dhadoop.policy.file=hadoop-policy.xml
+    -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/usr/lib/hadoop-mapreduce/logs
     -Dhadoop.log.file=hadoop.log -Dhadoop.root.logger=INFO,console -Dhadoop.security.logger=INFO,NullAppender
     org.apache.hadoop.mapred.JobClient -list all']
 vars:

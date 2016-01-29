@@ -1,7 +1,7 @@
 execs:
 - !!python/tuple [/usr/bin/yarn, 9, /usr/lib/hadoop-yarn/bin/yarn, '"$@"']
-- !!python/tuple [null, 203, /usr/java/jdk1.7.0_67-cloudera/bin/java, '-Dproc_application
-    -Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop-yarn/logs -Dyarn.log.dir=/usr/lib/hadoop-yarn/logs
+- !!python/tuple [/usr/lib/hadoop-yarn/bin/yarn, 203, /usr/java/jdk1.7.0_67-cloudera/bin/java,
+  '-Dproc_application -Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop-yarn/logs -Dyarn.log.dir=/usr/lib/hadoop-yarn/logs
     -Dhadoop.log.file=yarn.log -Dyarn.log.file=yarn.log -Dyarn.home.dir=/usr/lib/hadoop-yarn
     -Dhadoop.home.dir=/usr/lib/hadoop-yarn -Dhadoop.root.logger=INFO,console -Dyarn.root.logger=INFO,console
     -Djava.library.path=/usr/lib/hadoop/lib/native -classpath ''/etc/hadoop/conf:/etc/hadoop/conf:/etc/hadoop/conf:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/.//*:/usr/lib/hadoop-hdfs/./:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/.//*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/.//*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/.//*:/usr/lib/hadoop-yarn/.//*:/usr/lib/hadoop-yarn/lib/*''

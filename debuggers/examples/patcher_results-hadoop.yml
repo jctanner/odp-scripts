@@ -1,8 +1,8 @@
 execs:
 - !!python/tuple [/usr/bin/hadoop, 7, /usr/lib/hadoop/bin/hadoop, '"$@"']
-- !!python/tuple [null, 144, /usr/java/jdk1.7.0_67-cloudera/bin/java, '-Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop/logs
-    -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop -Dhadoop.id.str=
-    -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
+- !!python/tuple [/usr/lib/hadoop/bin/hadoop, 144, /usr/java/jdk1.7.0_67-cloudera/bin/java,
+  '-Xmx1000m -Dhadoop.log.dir=/usr/lib/hadoop/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/usr/lib/hadoop
+    -Dhadoop.id.str= -Dhadoop.root.logger=INFO,console -Djava.library.path=/usr/lib/hadoop/lib/native
     -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Dhadoop.security.logger=INFO,NullAppender
     org.apache.hadoop.fs.FsShell -ls /']
 vars:
