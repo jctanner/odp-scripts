@@ -195,7 +195,7 @@ def store_results(vars, execs, filename='/tmp/patcher_results.yml'):
         import pdb; pdb.set_trace()
 
 
-def trace_command(cmd, args, vars=None, vars_order=None):
+def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
 
     final_vars = {}
     final_vars_order = []
@@ -213,6 +213,7 @@ def trace_command(cmd, args, vars=None, vars_order=None):
         rawtext = str(so) + str(se)
         (evars, evars_order) = parse_bashx(rawtext)
         final_vars_order = evars_order
+        orig_cmd = indexes[-1][2]
     else:
         # Recursion ...
         evars = vars
@@ -229,6 +230,12 @@ def trace_command(cmd, args, vars=None, vars_order=None):
     indexes2 = get_exec_lines_in_string(rawtext2)
     (evars2, evars_order2) = parse_bashx(rawtext2)
     final_vars_order += evars_order2
+
+    # Set original script name in the indexes
+    for idx,x in enumerate(indexes2):
+        if not x[0]:
+            newtup = (orig_cmd, x[1], x[2], x[3])
+            indexes2[idx] = newtup
 
     if len(indexes2) > 1:
         print "found more than one exec"
@@ -256,8 +263,16 @@ def trace_command(cmd, args, vars=None, vars_order=None):
             (evars3, indexes3) = trace_command(indexes2[-1][2], 
                                                indexes2[-1][3], 
                                                vars=final_vars,
-                                               vars_order=final_vars_order)
+                                               vars_order=final_vars_order,
+                                               orig_cmd=indexes2[-1][2])
             print "indexes3:",indexes3
+            # Set original script name in the indexes
+            for idx,x in enumerate(indexes3):
+                if not x[0]:
+                    newtup = (indexes2[-1][2], x[1], x[2], x[3])
+                    indexes3[idx] = newtup
+
+
             final_indexes += indexes3
             for k,v in evars3.iteritems():
                 if k not in final_vars:
