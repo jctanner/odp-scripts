@@ -306,7 +306,11 @@ def main():
     hive = which('hive')
     (vars, execs) = trace_command(hive, '-e "show tables"')
     store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
-    
+
+    beeline = which('beeline')
+    (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
+    store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
+       
     #import pdb; pdb.set_trace()
 
 
