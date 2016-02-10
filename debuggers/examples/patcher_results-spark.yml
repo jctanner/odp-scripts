@@ -1,0 +1,254 @@
+execs:
+- !!python/tuple [/usr/bin/spark-shell, 5, /usr/lib/spark/bin/spark-shell, '"$@"']
+- !!python/tuple [/usr/lib/spark/bin/spark-shell, 83, /usr/lib/spark/bin/spark-submit,
+  --class org.apache.spark.repl.Main --name 'Spark shell' --help]
+- !!python/tuple [/usr/lib/spark/bin/spark-submit, null, /usr/lib/spark/bin/spark-submit,
+  --class org.apache.spark.repl.Main --name 'Spark shell' --help]
+- !!python/tuple [/usr/lib/spark/bin/spark-submit, 49, /usr/lib/spark/bin/spark-class,
+  org.apache.spark.deploy.SparkSubmit --class org.apache.spark.repl.Main --name 'Spark
+    shell' --help]
+- !!python/tuple [/usr/lib/spark/bin/spark-class, null, /usr/lib/spark/bin/spark-class,
+  org.apache.spark.deploy.SparkSubmit --class org.apache.spark.repl.Main --name 'Spark
+    shell' --help]
+- !!python/tuple [/usr/lib/spark/bin/spark-class, 206, /usr/java/jdk1.7.0_67-cloudera/bin/java,
+  '-cp ''/usr/lib/spark/conf/:/usr/lib/spark/lib/spark-assembly-1.5.0-cdh5.5.0-hadoop2.6.0-cdh5.5.0.jar:/etc/hadoop/conf/:/usr/lib/spark/lib/spark-assembly.jar:/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*''
+    -Dscala.usejavacp=true -Xms1g -Xmx1g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit
+    --class org.apache.spark.repl.Main --name ''Spark shell'' --help spark-shell']
+vars:
+  ASSEMBLY_DIR: [/usr/lib/spark/lib]
+  ASSEMBLY_DIR1: [/usr/lib/spark/assembly/target/scala-2.10]
+  ASSEMBLY_DIR2: [/usr/lib/spark/assembly/target/scala-2.11]
+  ASSEMBLY_JARS: [spark-assembly-1.5.0-cdh5.5.0-hadoop2.6.0-cdh5.5.0.jar]
+  BIGTOP_DEFAULTS_DIR: [/etc/default, /etc/default, /etc/default, /etc/default, /etc/default,
+    /etc/default, /etc/default, /etc/default, /etc/default, /etc/default, /etc/default,
+    /etc/default, /etc/default, /etc/default, /etc/default, /etc/default]
+  CMD: [(), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"),
+    ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG"), ("$ARG")]
+  FWDIR: [/usr/lib/spark, /usr/lib/spark, /usr/lib/spark, /usr/lib/spark, /usr/lib/spark,
+    /usr/lib/spark, /usr/lib/spark, /usr/lib/spark, /usr/lib/spark, /usr/lib/spark,
+    /usr/lib/spark, /usr/lib/spark]
+  HADOOP_CONF_DIR: [/etc/hadoop/conf]
+  IFS: ['']
+  JAVA6_HOME_CANDIDATES: [('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6'), ('/usr/lib/j2sdk1.6-sun' '/usr/lib/jvm/java-6-sun' '/usr/lib/jvm/java-1.6.0-sun-1.6.0'
+      '/usr/lib/jvm/j2sdk1.6-oracle' '/usr/lib/jvm/j2sdk1.6-oracle/jre' '/usr/java/jdk1.6'
+      '/usr/java/jre1.6')]
+  JAVA7_HOME_CANDIDATES: [('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7' '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle'
+      '/usr/lib/jvm/j2sdk1.7-oracle/jre' '/usr/lib/jvm/java-7-oracle'), ('/usr/java/jdk1.7'
+      '/usr/java/jre1.7' '/usr/lib/jvm/j2sdk1.7-oracle' '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      '/usr/lib/jvm/java-7-oracle')]
+  JAVA8_HOME_CANDIDATES: [('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8' '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle'
+      '/usr/lib/jvm/j2sdk1.8-oracle/jre' '/usr/lib/jvm/java-8-oracle'), ('/usr/java/jdk1.8'
+      '/usr/java/jre1.8' '/usr/lib/jvm/j2sdk1.8-oracle' '/usr/lib/jvm/j2sdk1.8-oracle/jre'
+      '/usr/lib/jvm/java-8-oracle')]
+  JAVA_HOME_CANDIDATES: ['(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]}
+      ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]}
+      ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]}
+      ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]}
+      ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]}
+      ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]}
+      ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]}
+      ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]}
+      ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})',
+    '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]}
+      ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]}
+      ${JAVA8_HOME_CANDIDATES[@]} ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]}
+      ${OPENJAVA8_HOME_CANDIDATES[@]})', '(${JAVA7_HOME_CANDIDATES[@]} ${JAVA8_HOME_CANDIDATES[@]}
+      ${MISCJAVA_HOME_CANDIDATES[@]} ${OPENJAVA7_HOME_CANDIDATES[@]} ${OPENJAVA8_HOME_CANDIDATES[@]})']
+  LAUNCH_CLASSPATH: [/usr/lib/spark/lib/spark-assembly-1.5.0-cdh5.5.0-hadoop2.6.0-cdh5.5.0.jar]
+  MISCJAVA_HOME_CANDIDATES: [('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home' '/usr/java/default' '/usr/lib/jvm/default-java'
+      '/usr/lib/jvm/java-openjdk' '/usr/lib/jvm/jre-openjdk'), ('/Library/Java/Home'
+      '/usr/java/default' '/usr/lib/jvm/default-java' '/usr/lib/jvm/java-openjdk'
+      '/usr/lib/jvm/jre-openjdk')]
+  OPENJAVA6_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk'
+      '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk'
+      '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk'
+      '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk'
+      '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'),
+    ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk'
+      '/usr/lib/jvm/jre-1.6.0-openjdk'), ('/usr/lib/jvm/java-1.6.0-openjdk' '/usr/lib/jvm/jre-1.6.0-openjdk')]
+  OPENJAVA7_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk'
+      '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk'
+      '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk'
+      '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk'
+      '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'),
+    ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk'
+      '/usr/lib/jvm/java-7-openjdk'), ('/usr/lib/jvm/java-1.7.0-openjdk' '/usr/lib/jvm/java-7-openjdk')]
+  OPENJAVA8_HOME_CANDIDATES: [('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk'
+      '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk'
+      '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk'
+      '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk'
+      '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'),
+    ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk'
+      '/usr/lib/jvm/java-8-openjdk'), ('/usr/lib/jvm/java-1.8.0-openjdk' '/usr/lib/jvm/java-8-openjdk')]
+  PYTHONHASHSEED: ['0', '0', '0', '0']
+  RUNNER: [/usr/java/jdk1.7.0_67-cloudera/bin/java]
+  SPARK_ASSEMBLY_JAR: ['', /usr/lib/spark/lib/spark-assembly-1.5.0-cdh5.5.0-hadoop2.6.0-cdh5.5.0.jar]
+  SPARK_DIST_CLASSPATH: [':/usr/lib/spark/lib/spark-assembly.jar', ':/usr/lib/spark/lib/spark-assembly.jar:',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*''', ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*''',
+    ''':/usr/lib/spark/lib/spark-assembly.jar::/usr/lib/hadoop/lib/*:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/lib/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-mapreduce/lib/*:/usr/lib/hadoop-mapreduce/*:/usr/lib/hadoop-yarn/lib/*:/usr/lib/hadoop-yarn/*:/usr/lib/hive/lib/*:/usr/lib/flume-ng/lib/*:/usr/lib/paquet/lib/*:/usr/lib/avro/lib/*''']
+  SPARK_ENV_LOADED: ['1']
+  SPARK_HOME: [/usr/lib/spark, /usr/lib/spark, /usr/lib/spark, /usr/lib/spark]
+  SPARK_LAUNCH_WITH_SCALA: ['0']
+  SPARK_LIBRARY_PATH: [/usr/lib/spark/lib]
+  SPARK_LOG_DIR: [/var/log/spark]
+  SPARK_MASTER_IP: [quickstart.cloudera]
+  SPARK_MASTER_PORT: ['7077']
+  SPARK_MASTER_WEBUI_PORT: ['18080']
+  SPARK_PID_DIR: [/var/run/spark/]
+  SPARK_SCALA_VERSION: ['2.10']
+  SPARK_SUBMIT_OPTS: [''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''',
+    ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''',
+    ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''',
+    ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''', ''' -Dscala.usejavacp=true''',
+    ''' -Dscala.usejavacp=true''']
+  SPARK_WORKER_DIR: [/var/run/spark/work]
+  SPARK_WORKER_PORT: ['7078']
+  SPARK_WORKER_WEBUI_PORT: ['18081']
+  STANDALONE_SPARK_MASTER_HOST: [quickstart.cloudera]
+  _SPARK_ASSEMBLY: [/usr/lib/spark/lib/spark-assembly-1.5.0-cdh5.5.0-hadoop2.6.0-cdh5.5.0.jar]
+  _SPARK_CMD_USAGE: ['''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''', '''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''', '''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''', '''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''', '''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''', '''Usage: ./bin/spark-shell [options]''', '''Usage: ./bin/spark-shell
+      [options]''']
+  cygwin: ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false',
+    'false', 'false', 'false', 'false']
+  exit_status: ['127', '0', '0', '0', '127', '0', '0', '0', '127', '0', '0', '0',
+    '127', '0', '0', '0']
+  num_jars: ['1']
+  parent_dir: [/usr/lib/spark]
+  saved_stty: ['', '500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0',
+    '', '', '', '', '500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0',
+    '', '', '', '', '500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0',
+    '', '', '', '', '500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0',
+    '', '', '']
+  user_conf_dir: [/usr/lib/spark/conf]

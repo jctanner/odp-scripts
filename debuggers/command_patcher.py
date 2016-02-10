@@ -85,6 +85,23 @@ def get_exec_lines_in_string(rawtext):
                             
             indexes.append((None, idx, parts[1], " ".join(parts[2:])))
 
+    # spark inspired (no exec at the top level) ...            
+    if not indexes:
+        # iterate backwards to the first script found
+        possible_script = None
+        rlines = [x for x in reversed(lines)]
+        for idx, x in enumerate(rlines):
+            # skip stdout
+            if not x.startswith('+'):
+                continue
+            x = x.replace('+', '')
+            x = x.strip()
+            parts = x.split()
+            if is_script(parts[0]):
+                print x
+                indexes.append((None, idx, parts[0], " ".join(parts[1:])))
+                break
+
     return indexes
 
 
@@ -253,12 +270,20 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
     
     # combine all the execs
     final_indexes = indexes + indexes2
+    #import pdb; pdb.set_trace()
 
     # Is further recursion needed?
     if indexes2:
         script = is_script(indexes2[-1][2])
+        #if not script:
+        #    print "RECURSION NOT REQUIRED!"
+        #    print indexes2[-1][2]
+        #    import pdb; pdb.set_trace()
         if script:
-            print "RECURSION REQUIRED!"
+            #print "RECURSION REQUIRED!"
+            #print indexes2[-1][2]
+            #import pdb; pdb.set_trace()
+
             # to recurse, we need to send all the known vars
             (evars3, indexes3) = trace_command(indexes2[-1][2], 
                                                indexes2[-1][3], 
@@ -310,7 +335,11 @@ def main():
     beeline = which('beeline')
     (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
     store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
-       
+
+    spark = which('spark-shell')
+    (vars, execs) = trace_command(spark, '--help')
+    store_results(vars, execs, filename='/tmp/patcher_results-spark.yml')
+      
     #import pdb; pdb.set_trace()
 
 
