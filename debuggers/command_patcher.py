@@ -48,7 +48,9 @@ def which(cmd):
 
 def is_script(filepath):
     ''' Is a file text or is it binary? '''
-    cmd = "file %s | fgrep 'script text'" % filepath
+    # EL6: Bourne-Again shell script text executable
+    # EL7: Bourne-Again shell script, ASCII text executable
+    cmd = "file %s | fgrep -i -e 'shell script'" % filepath
     (rc, so, se) = run_command(cmd)
     if rc == 0:
         return True
