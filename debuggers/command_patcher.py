@@ -19,7 +19,12 @@ try:
 except:
     hasyaml = False
 
-def run_command_live(args):
+def run_command_live(args, timeout=True):
+
+    #import pdb; pdb.set_trace()
+    if timeout:
+        args = "timeout -s SIGKILL 30s %s" % args
+
     p = subprocess.Popen(args,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
@@ -50,7 +55,8 @@ def is_script(filepath):
     ''' Is a file text or is it binary? '''
     # EL6: Bourne-Again shell script text executable
     # EL7: Bourne-Again shell script, ASCII text executable
-    cmd = "file %s | fgrep -i -e 'shell script'" % filepath
+    # EL7: bin/sparkling-shell: a /usr/bin/env bash script, ASCII text executable
+    cmd = "file %s | fgrep -i -e 'shell script' -e 'bash script'" % filepath
     (rc, so, se) = run_command(cmd)
     if rc == 0:
         return True
@@ -75,7 +81,6 @@ def get_exec_lines_in_string(rawtext):
 
     indexes = []
     lines = rawtext.split('\n')
-
     for idx,x in enumerate(lines):
         x = x.replace('+', '')
         x = x.strip()
@@ -94,8 +99,13 @@ def get_exec_lines_in_string(rawtext):
         rlines = [x for x in reversed(lines)]
         for idx, x in enumerate(rlines):
             # skip stdout
-            if not x.startswith('+'):
+            xparts = x.split()
+            if not xparts:
                 continue
+            #import pdb; pdb.set_trace()
+            #if not x.startswith('+') and not is_script(xparts[0]):
+            #    continue
+            #import pdb; pdb.set_trace()
             x = x.replace('+', '')
             x = x.strip()
             parts = x.split()
@@ -103,7 +113,10 @@ def get_exec_lines_in_string(rawtext):
                 print x
                 indexes.append((None, idx, parts[0], " ".join(parts[1:])))
                 break
+            if 'shell' in x:
+                import pdb; pdb.set_trace()
 
+        #import pdb; pdb.set_trace()
     return indexes
 
 
@@ -232,7 +245,12 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
         rawtext = str(so) + str(se)
         (evars, evars_order) = parse_bashx(rawtext)
         final_vars_order = evars_order
-        orig_cmd = indexes[-1][2]
+        try:
+            orig_cmd = indexes[-1][2]
+        except Exception as e:
+            print e
+            print indexes
+            import pdb; pdb.set_trace()
     else:
         # Recursion ...
         evars = vars
@@ -318,30 +336,44 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
 
 def main():
 
-    hadoop = which('hadoop')
-    (vars, execs) = trace_command(hadoop, 'fs -ls /')
-    store_results(vars, execs, filename='/tmp/patcher_results-hadoop.yml')
 
-    mapred = which('mapred')
-    (vars, execs) = trace_command(mapred, 'job -list all')
-    store_results(vars, execs, filename='/tmp/patcher_results-mapred.yml')
+    #import pdb; pdb.set_trace()
+    print sys.argv
 
-    yarn = which('yarn')
-    (vars, execs) = trace_command(yarn, 'application -list')
-    store_results(vars, execs, filename='/tmp/patcher_results-yarn.yml')
+    if len(sys.argv) > 1:
 
-    hive = which('hive')
-    (vars, execs) = trace_command(hive, '-e "show tables"')
-    store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
+        if len(sys.argv) > 2:
+            (vars, execs) = trace_command(sys.argv[1], ' '.join(sys.argv[1:]))
+        else:
+            (vars, execs) = trace_command(sys.argv[1], ' ')
+        store_results(vars, execs, filename='/tmp/patcher_results-testcommand.yml')
 
-    beeline = which('beeline')
-    (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
-    store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
 
-    spark = which('spark-shell')
-    (vars, execs) = trace_command(spark, '--help')
-    store_results(vars, execs, filename='/tmp/patcher_results-spark.yml')
-      
+    else:
+        hadoop = which('hadoop')
+        (vars, execs) = trace_command(hadoop, 'fs -ls /')
+        store_results(vars, execs, filename='/tmp/patcher_results-hadoop.yml')
+
+        mapred = which('mapred')
+        (vars, execs) = trace_command(mapred, 'job -list all')
+        store_results(vars, execs, filename='/tmp/patcher_results-mapred.yml')
+
+        yarn = which('yarn')
+        (vars, execs) = trace_command(yarn, 'application -list')
+        store_results(vars, execs, filename='/tmp/patcher_results-yarn.yml')
+
+        hive = which('hive')
+        (vars, execs) = trace_command(hive, '-e "show tables"')
+        store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
+
+        beeline = which('beeline')
+        (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
+        store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
+
+        spark = which('spark-shell')
+        (vars, execs) = trace_command(spark, '--help')
+        store_results(vars, execs, filename='/tmp/patcher_results-spark.yml')
+          
     #import pdb; pdb.set_trace()
 
 
