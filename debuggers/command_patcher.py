@@ -233,12 +233,17 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
     final_vars_order = []
     final_indexes = []
 
+    if not cmd:
+        return (final_vars, final_indexes)
+
     # If vars are given, this is not a top level script
     # so skip calling it directly and go straight to
     # mocking out the exec call. This will typically happen
     # during recursion on commands such as hive.
     if not vars:
         # run the command once to get all the debug output
+        if not cmd:
+            import pdb; pdb.set_trace()
         indexes = get_exec_lines_in_file(cmd)
         tracecmd = "bash -x %s %s" % (cmd, args)
         (rc, so, se) = run_command_live(tracecmd)
@@ -351,29 +356,40 @@ def main():
 
     else:
         hadoop = which('hadoop')
-        (vars, execs) = trace_command(hadoop, 'fs -ls /')
-        store_results(vars, execs, filename='/tmp/patcher_results-hadoop.yml')
+        if hadoop:
+            (vars, execs) = trace_command(hadoop, 'fs -ls /')
+            store_results(vars, execs, filename='/tmp/patcher_results-hadoop.yml')
+
+        hdfs = which('hdfs')
+        if hdfs:
+            (vars, execs) = trace_command(hdfs, 'fs -ls /')
+            store_results(vars, execs, filename='/tmp/patcher_results-hdfs.yml')
 
         mapred = which('mapred')
-        (vars, execs) = trace_command(mapred, 'job -list all')
-        store_results(vars, execs, filename='/tmp/patcher_results-mapred.yml')
+        if mapred:
+            (vars, execs) = trace_command(mapred, 'job -list all')
+            store_results(vars, execs, filename='/tmp/patcher_results-mapred.yml')
 
         yarn = which('yarn')
-        (vars, execs) = trace_command(yarn, 'application -list')
-        store_results(vars, execs, filename='/tmp/patcher_results-yarn.yml')
+        if yarn:
+            (vars, execs) = trace_command(yarn, 'application -list')
+            store_results(vars, execs, filename='/tmp/patcher_results-yarn.yml')
 
         hive = which('hive')
-        (vars, execs) = trace_command(hive, '-e "show tables"')
-        store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
+        if hive:
+            (vars, execs) = trace_command(hive, '-e "show tables"')
+            store_results(vars, execs, filename='/tmp/patcher_results-hive.yml')
 
         beeline = which('beeline')
-        (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
-        store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
+        if beeline:
+            (vars, execs) = trace_command(beeline, '-u jdbc:hive2://localhost:10000 -u hive -p hive -e "show tables"')
+            store_results(vars, execs, filename='/tmp/patcher_results-beeline.yml')
 
         spark = which('spark-shell')
-        (vars, execs) = trace_command(spark, '--help')
-        store_results(vars, execs, filename='/tmp/patcher_results-spark.yml')
-          
+        if spark:
+            (vars, execs) = trace_command(spark, '--help')
+            store_results(vars, execs, filename='/tmp/patcher_results-spark.yml')
+              
     #import pdb; pdb.set_trace()
 
 
