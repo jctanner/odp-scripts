@@ -138,6 +138,19 @@ set_hadoop_vars() {
     echo "# DEBUG: HADOOP_MAPRED_HOME=$HADOOP_MAPRED_HOME"
 }
 
+apply_workarounds() {
+
+    # HADOOP_EC1
+    if [ ! -z "$HADOOP_TOOLS_PATH" ]; then
+        export HADOOP_TOOLS_PATH=$(echo $HADOOP_TOOLS_PATH | tr -d '*')
+        #HTP=$(dirname $HADOOP_TOOLS_PATH)
+        if [ ! -d $HADOOP_TOOLS_PATH ]; then
+            echo "# DEBUG: mkdir (HADOOP_TOOLS_PATH) $HADOOP_TOOLS_PATH"
+            sudo mkdir -p $HADOOP_TOOLS_PATH
+        fi
+    fi
+
+}
 
 print_tests() {
   echo "######################################################"
@@ -185,6 +198,11 @@ echo "## ENV ..."
 for VAR in $(env | fgrep -e HOME -e DIR -e HADOOP -e YARN -e MAPRED); do
     echo "# DEBUG: $VAR"
 done    
+
+echo "######################################################"
+echo "#             APPLYING WORKAROUNDS                   #"
+echo "######################################################"
+apply_workarounds
 
 echo "######################################################"
 echo "#             STARTING SPEC TESTS                    #"
