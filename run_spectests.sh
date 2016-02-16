@@ -181,6 +181,11 @@ set_hadoop_vars
 # SET JAVA_HOME
 set_java_home
 
+echo "## ENV ..."
+for VAR in $(env | fgrep -e HOME -e DIR -e HADOOP -e YARN -e MAPRED); do
+    echo "# DEBUG: $VAR"
+done    
+
 echo "######################################################"
 echo "#             STARTING SPEC TESTS                    #"
 echo "######################################################"
