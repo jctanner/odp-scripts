@@ -93,6 +93,7 @@ get_and_set_envvars() {
     if [[ $RC == 0 ]]; then
         echo "# DEBUG: using envvars subcommand to find vars"
         hadoop envvars > /tmp/vars.sh
+        hdfs envvars > /tmp/vars.sh
         yarn envvars >> /tmp/vars.sh
         mapred envvars >> /tmp/vars.sh
 
@@ -150,6 +151,22 @@ apply_workarounds() {
         fi
     fi
 
+    # HADOOP_EC2
+    export HADOOP_COMMON_HOME=$(python -c "import yaml; import os; fdata = yaml.load(open('/tmp/patcher_results-hadoop.yml', 'rb')); print fdata['vars']['HADOOP_COMMON_HOME'][-1]")
+    echo "# DEBUG: HADOOP_COMMON_HOME == $HADOOP_COMMON_HOME"
+
+    # HADOOP_EC3
+    export HADOOP_COMMON_DIR=$(python -c "import yaml; import os; fdata = yaml.load(open('/tmp/patcher_results-hadoop.yml', 'rb')); print fdata['vars']['HADOOP_COMMON_DIR'][-1]")
+    echo "# DEBUG: HADOOP_COMMON_DIR == $HADOOP_COMMON_DIR"
+
+    # HADOOP_EC4
+    export HADOOP_COMMON_LIB_JARS_DIR=$(python -c "import yaml; import os; fdata = yaml.load(open('/tmp/patcher_results-hadoop.yml', 'rb')); print fdata['vars']['HADOOP_COMMON_LIB_JARS_DIR'][-1]")
+    echo "# DEBUG: HADOOP_COMMON_LIB_JARS_DIR == $HADOOP_COMMON_LIB_JARS_DIR"
+
+    # HADOOP_DIRSTRUCT
+    # HADOOP_GETCONF
+    # HADOOP_TOOLS
+
 }
 
 print_tests() {
@@ -183,9 +200,8 @@ echo "######################################################"
 # install groovy and gradle
 install_java_tools
 
-
 echo "######################################################"
-echo "#             SETTING ENVIRONMENT                    #"
+echo "#             APPLYING WORKAROUNDS                   #"
 echo "######################################################"
 
 # SET HADOOP SERVICE HOMES
@@ -194,15 +210,18 @@ set_hadoop_vars
 # SET JAVA_HOME
 set_java_home
 
+# OTHERS
+apply_workarounds
+
+echo "######################################################"
+echo "#                ENVIRONMENT                         #"
+echo "######################################################"
+
 echo "## ENV ..."
-for VAR in $(env | fgrep -e HOME -e DIR -e HADOOP -e YARN -e MAPRED); do
+for VAR in $(env | fgrep -e HOME -e DIR -e HADOOP -e HDFS -e YARN -e MAPRED | sort); do
     echo "# DEBUG: $VAR"
 done    
 
-echo "######################################################"
-echo "#             APPLYING WORKAROUNDS                   #"
-echo "######################################################"
-apply_workarounds
 
 echo "######################################################"
 echo "#             STARTING SPEC TESTS                    #"
@@ -224,7 +243,8 @@ cd $BIGTOP_HOME
 cd bigtop-tests/spec-tests
 echo "# DEBUG PWD: $(pwd)"
 #gradle tasks
+gradle clean
 gradle test
 
 # SHOW RESULTS (HTML)
-print_tests
+#print_tests
