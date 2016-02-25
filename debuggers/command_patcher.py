@@ -113,7 +113,8 @@ def get_exec_lines_in_string(rawtext):
                 print x
                 indexes.append((None, idx, parts[0], " ".join(parts[1:])))
                 break
-            if 'shell' in x:
+            if 'shell' in x and not 'CLASSPATH' in x:
+                print "shell in x"
                 import pdb; pdb.set_trace()
 
         #import pdb; pdb.set_trace()
