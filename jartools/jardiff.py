@@ -28,12 +28,25 @@ def main():
             continue
         #print k
         if jarAdata[k] != jarBdata[k]:
-            print "signature of %s differs" % k
             diff = difflib.unified_diff([x+'\n' for x in jarAdata[k].splitlines()], 
                                         [x+'\n' for x in jarBdata[k].splitlines()])
 
+            lines = []
             for line in diff:
-                sys.stdout.write(line)
+                #sys.stdout.write(line)
+                lines.append(line)
+
+            # how many lines start with '-' implying the line was changed
+            deletes = 0                
+            for line in lines:
+                if line.startswith('---'):
+                    continue
+                if line.startswith('-'):
+                    deletes += 1    
+            if deletes > 0:
+                print "signature of %s differs" % k
+                for line in lines:
+                    sys.stdout.write(line)                    
             #import pdb; pdb.set_trace()
 
 if __name__ == "__main__":
