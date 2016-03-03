@@ -93,6 +93,7 @@ def get_exec_lines_in_string(rawtext):
             indexes.append((None, idx, parts[1], " ".join(parts[2:])))
 
     # spark inspired (no exec at the top level) ...            
+    #       $FWDIR"/bin/spark-submit --class org.apache.spark.repl.Main --name "Spark shell" "$@"
     if not indexes:
         # iterate backwards to the first script found
         possible_script = None
@@ -109,13 +110,30 @@ def get_exec_lines_in_string(rawtext):
             x = x.replace('+', '')
             x = x.strip()
             parts = x.split()
+            print parts
             if is_script(parts[0]):
                 print x
                 indexes.append((None, idx, parts[0], " ".join(parts[1:])))
                 break
-            if 'shell' in x and not 'CLASSPATH' in x:
+
+            # workaround for the new $FWDIR var ...
+            elif parts[0].endswith('/spark-submit'):
+                sspath = which('spark-submit')
+                if sspath:
+                    #print x
+                    #print parts
+                    parts[0] = sspath
+                    indexes.append((None, idx, parts[0], " ".join(parts[1:])))
+                    break
+                    #import pdb; pdb.set_trace()
+
+
+            elif '-shell' in x \
+                and not 'CLASSPATH' in x \
+                and not x.strip().startswith('export') \
+                and not 'Usage' in x \
+                and not x.strip().startswith('#'):
                 print "shell in x"
-                import pdb; pdb.set_trace()
 
         #import pdb; pdb.set_trace()
     return indexes
@@ -233,6 +251,8 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
     final_vars = {}
     final_vars_order = []
     final_indexes = []
+    evars = {}
+    evars_order = []
 
     if not cmd:
         return (final_vars, final_indexes)
@@ -246,17 +266,21 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
         if not cmd:
             import pdb; pdb.set_trace()
         indexes = get_exec_lines_in_file(cmd)
+        #if indexes:
         tracecmd = "bash -x %s %s" % (cmd, args)
         (rc, so, se) = run_command_live(tracecmd)
         rawtext = str(so) + str(se)
         (evars, evars_order) = parse_bashx(rawtext)
         final_vars_order = evars_order
-        try:
-            orig_cmd = indexes[-1][2]
-        except Exception as e:
-            print e
-            print indexes
-            import pdb; pdb.set_trace()
+        if not indexes:
+            orig_cmd = cmd
+        else:
+            try:
+                orig_cmd = indexes[-1][2]
+            except Exception as e:
+                print e
+                print indexes
+                import pdb; pdb.set_trace()
     else:
         # Recursion ...
         evars = vars
@@ -330,11 +354,11 @@ def trace_command(cmd, args, vars=None, vars_order=None, orig_cmd=None):
                     final_vars[k] = v
                 else:
                     final_vars[k] += v
-         
-       
-    if is_script(final_indexes[-1][3]):
-        print final_indexes
-        import pdb; pdb.set_trace()
+
+    if final_indexes:         
+        if is_script(final_indexes[-1][3]):
+            print final_indexes
+            import pdb; pdb.set_trace()
 
     #import pdb; pdb.set_trace()
     return (final_vars, final_indexes)
